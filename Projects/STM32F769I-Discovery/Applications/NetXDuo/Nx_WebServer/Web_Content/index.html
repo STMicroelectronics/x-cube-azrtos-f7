@@ -1,0 +1,206 @@
+<!doctype html>
+<!-- 
+* Bootstrap Simple Admin Template
+* Version: 2.1
+* Author: Alexis Luna
+* Website: https://github.com/alexis-luna/bootstrap-simple-admin-template
+-->
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>NetXDuo WebServer Demo</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/fontawesome.min.css"
+        integrity="sha512-OdEXQYCOldjqUEsuMKsZRj93Ht23QRlhIb8E/X0sbwZhme8eUw6g8q7AdxGJKakcBbv7+/PX0Gc2btf7Ru8cZA=="
+        crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/v4-shims.min.css"
+        integrity="sha512-iaLhEHW3p+ZNgkDKBi4zEfH+aWAMGJ7I7njqD3jKnbN0ux4Gkumu2vjuI71YUov20OIPl3R32v8HO+V+6OgbvQ=="
+        crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+        integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+        crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/solid.min.css"
+        integrity="sha512-jQqzj2vHVxA/yCojT8pVZjKGOe9UmoYvnOuM/2sQ110vxiajBU+4WkyRs1ODMmd4AfntwUEV4J+VfM6DkfjLRg=="
+        crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.1/css/bootstrap.min.css"
+        integrity="sha512-Ez0cGzNzHR1tYAv56860NLspgUGuQw16GiOOp/I2LuTmpSK9xDXlgJz3XN4cnpXWDmkNBKXR/VDMTCnAaEooxA=="
+        crossorigin="anonymous" />
+    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Lato'>
+
+    <link rel="stylesheet" href="assets/master.css" type="text/css">
+</head>
+
+<body>
+    <div class="wrapper">
+        <nav id="sidebar" class="active">
+            <div class="sidebar-header">
+                <a href="https://www.st.com/content/st_com/en.html">
+                    <img src="assets/st_logo.jpg" alt="ST_logo" class="app-logo" style="width: 90%; height: 90%;">
+                </a>
+            </div>
+            <ul class="list-unstyled components text-secondary">
+                <li>
+                    <a href="index.html"><i class="fa fa-home"></i> Home</a>
+                </li>
+                <li>
+                    <a href="dashboard.html"><i class="fa fa-tachometer"></i> Dashboard</a>
+                </li>
+            </ul>
+        </nav>
+        <div id="body" class="active">
+            <nav class="navbar navbar-expand-lg navbar-white bg-white">
+                <button type="button" id="sidebarCollapse" class="btn btn-light"><i
+                        class="fas fa-bars"></i><span></span></button>
+                        <label style=" top: 10%; right: 40%; position: absolute; font-size:x-large;font-weight: bold; color:darkblue;">NetXDuo WebServer Demo</label>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                </div>
+            </nav>
+            <div class="content">
+                <div class="content">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12 col-lg-12">
+                                <div class="card">
+                                    <div class="page-title" style="margin-left: 10px; color: darkblue;">
+                                        <h3>Product Overview</h3>
+                                    </div>
+                                    <div class="card-body">
+                                        <div>
+                                            <img src ="assets/STM32F7_Discovery.jpg" class="txt-wrap" >
+                                        <p style="left: 50%;">The <b>STM32F769I-DISCO</b> discovery kit allows users to develop and share applications with the STM32F7 Series microcontrollers based on the ARM®Cortex®-M7 core.<br>
+										The discovery kit enables a wide diversity of applications taking benefit from audio, multi- sensor support, graphics, security, video and high-speed connectivity features. <br>
+										The Arduino™connectivity support provides unlimited expansion capabilities with a large choice of specialized add-on boards.
+                                    </p>
+                                    <div class="page-title" style="color: darkblue;">
+                                        <h3>All Features</h3>
+                                    </div>      
+                                    <ul class="feature_ul"  data-columns="2" style="width: fit-content;">
+											<li>
+												STM32F769NIH6 microcontroller featuring 2 Mbytes of Flash memory and 512+16+4 Kbytes of RAM, in BGA216 package
+											</li>
+											<li>
+												On-board ST-LINK/V2-1 supporting USB reenumeration capability
+											</li>
+											<li>
+												USB ST-LINK functions: virtual COM port, mass storage, debug port
+											</li>
+											<li>
+												4" capacitive touch LCD display with MIPI® DSI connector (on STM32F769I-DISCO only)
+											</li>												
+											<li>
+												SAI audio codec
+
+											</li>
+											<li>
+												Two audio line jacks, one for input and one for output
+											</li>
+											<li>
+												Two push-buttons (user and reset)
+
+											</li>
+											<li>
+												512-Mbit Quad-SPI Flash memory
+
+											</li>
+											<li>
+												128-Mbit SDRAM
+
+											</li>												
+											<li>
+												Connector for microSD card
+
+											</li>
+											<li>
+												Wi-Fi or Ext-EEP daughterboard connector
+
+											</li>
+											<li>
+												USB OTG HS with Micro-AB connector
+											</li>
+											<li>											
+												Five power supply options:
+
+											<ul>										
+											<li>
+												ST LINK/V2-1
+											</li>
+											<li>
+												USB HS connector
+											</li>
+											<li>
+												5 V from RJ45 (Power Over Ethernet)
+											</li>
+											<li>
+												5 V from Arduino™or external connector
+											</li>												
+											<li>
+												USB charger
+											</li>			
+											</ul>
+											<li>
+												Power Over Ethernet based on IEEE 802.3af (Powered Device, 48 V to 5 V, 3 W)
+											</li>
+											<li>
+												Comprehensive free software including a variety of examples, part of the STM32Cube package
+											</li>											
+											<li>
+												Supported by a wide choice of integrated development environments
+											</li>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12 col-lg-12">
+                                <div class="card">
+                                    <div class="page-title" style="margin-left: 10px; color: darkblue;">
+                                        <h3>About the demo</h3>
+                                    </div>
+                                    <div class="card-body">
+                                        <div>
+                                            <p style="left: 50%;">
+                                                this demo is a WebServer running on the <b>STM32F769I-DISCO</b> board using the NetXDuo API. The WebServer offers 2 webpages.
+                                                <ul>
+                                                    <li>
+                                                        <a href="index.html" style="color: rgb(104, 200, 245);text-decoration: underline;">index.html </a>: this page giving an overall description of the demo and the <a href="https://www.st.com/en/evaluation-tools/32f769idiscovery.html" style="color: rgb(104, 200, 245);text-decoration: underline;">STM32F769I-DISCO HW features</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="dashboard.html" style="color: rgb(104, 200, 245);text-decoration: underline;">dashboard.html</a> a simple dashboard interface to let the user:<br>
+                                                            <ul>
+                                                                <li>
+                                                                    Monitor some performance infos collected from the ThreadX and NetXDuo. These infos are updated each 3 seconds via JQuery AJAX requests.
+                                                                </li>
+                                                                <li>
+                                                                   Perform a simple action on the board, that is toggling the green led, using a toggle switch button.                                                                   
+                                                                </li>
+                                                            </ul>
+                                                    </li>
+                                                </ul>
+                                            </p>
+                                        <p style="font-style: italic;"><b>Note: To correctly display the webpage, the web browser should be connected to the internet.</b></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+                integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+                crossorigin="anonymous"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.1/js/bootstrap.min.js"
+                integrity="sha512-EKWWs1ZcA2ZY9lbLISPz8aGR2+L7JVYqBAYTq5AXgBkSjRSuQEGqWx8R1zAX16KdXPaCjOCaKE8MCpU0wcHlHA=="
+                crossorigin="anonymous"></script>
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
+                integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
+                crossorigin="anonymous"></script>
+            <script src="assets/script.js"></script>
+</body>
+
+</html>
