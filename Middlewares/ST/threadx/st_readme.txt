@@ -7,6 +7,23 @@
   ******************************************************************************
   */
 
+### 13-May-2022 ###
+========================
+- Fix compile error in ThreadX 6.1.10 IAR/GNU CM33 port
+
+### 01-April-2022 ###
+========================
+- Upgrade to Azure RTOS ThreadX 6.1.10
+
+### 28-January-2022 ###
+========================
+- Add STM32C0 series to Azure RTOS licensed hardware list
+
+### 13-December-2021 ###
+========================
+- Upgrade to Azure RTOS ThreadX 6.1.9
+- Add STM32WL/STM32WB/STM32G0 series to Azure RTOS licensed hardware list
+
 ### 05-November-2021 ###
 ========================
 - Upgrade to Azure RTOS ThreadX 6.1.8 with additional following patch

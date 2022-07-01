@@ -82,11 +82,13 @@ UINT MX_NetXDuo_Init(VOID *memory_ptr);
 #define DEFAULT_MEMORY_SIZE      1024
 #define DEFAULT_PRIORITY         10
 
+#define LINK_PRIORITY            11
+
 #define NULL_ADDRESS             0
 
 #define DEFAULT_PORT             6000
 #define TCP_SERVER_PORT          6001
-#define TCP_SERVER_ADDRESS       IP_ADDRESS(172, 17, 0, 120)
+#define TCP_SERVER_ADDRESS       IP_ADDRESS(10, 157, 11, 113)
 
 #define MAX_PACKET_COUNT         100
 #define DEFAULT_MESSAGE          "TCP Client on STM32F767-Nucleo"

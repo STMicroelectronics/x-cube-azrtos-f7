@@ -39,8 +39,8 @@
 /*                                                                        */
 /*  FUNCTION                                               RELEASE        */
 /*                                                                        */
-/*    _tx_thread_schedule                             Cortex-M4/MPU/AC5   */
-/*                                                           6.1.7        */
+/*    _tx_thread_schedule                               Cortex-M4/AC5     */
+/*                                                           6.1.9        */
 /*  AUTHOR                                                                */
 /*                                                                        */
 /*    Scott Larson, Microsoft Corporation                                 */
@@ -73,14 +73,7 @@
 /*                                                                        */
 /*    DATE              NAME                      DESCRIPTION             */
 /*                                                                        */
-/*  09-30-2020      Scott Larson            Initial Version 6.1           */
-/*  11-09-2020      Scott Larson            Modified comment(s), arrange  */
-/*                                            code to fix link error when */
-/*                                            VFP is enabled, resulting   */
-/*                                            in version 6.1.2            */
-/*  06-02-2021      Scott Larson            Fixed extended stack handling */
-/*                                            when calling kernel APIs,   */
-/*                                            resulting in version 6.1.7  */
+/*  10-15-2021      Scott Larson            Initial Version 6.1.9         */
 /*                                                                        */
 /**************************************************************************/
 // VOID   _tx_thread_schedule(VOID)
@@ -359,10 +352,21 @@ __tx_ts_restore
 
     // Use alias registers to quickly load MPU
     ADD     r0, r0, #100                            // Build address of MPU register start in thread control block
+#ifdef TXM_MODULE_MANAGER_16_MPU
+    LDM     r0!,{r2-r9}                             // Load MPU regions 0-3
+    STM     r1,{r2-r9}                              // Store MPU regions 0-3
+    LDM     r0!,{r2-r9}                             // Load MPU regions 4-7
+    STM     r1,{r2-r9}                              // Store MPU regions 4-7
+    LDM     r0!,{r2-r9}                             // Load MPU regions 8-11
+    STM     r1,{r2-r9}                              // Store MPU regions 8-11
+    LDM     r0,{r2-r9}                              // Load MPU regions 12-15
+    STM     r1,{r2-r9}                              // Store MPU regions 12-15
+#else
     LDM     r0!,{r2-r9}                             // Load first four MPU regions
     STM     r1,{r2-r9}                              // Store first four MPU regions
     LDM     r0,{r2-r9}                              // Load second four MPU regions
     STM     r1,{r2-r9}                              // Store second four MPU regions
+#endif
     LDR     r0, =0xE000ED94                         // Build MPU control reg address
     MOV     r1, #5                                  // Build enable value with background region enabled
     STR     r1, [r0]                                // Enable MPU

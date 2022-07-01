@@ -57,7 +57,6 @@ void Error_Handler(void);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
-void   MX_ETH_Init(void);
 void   MX_SDMMC2_SD_Init(void);
 /* USER CODE BEGIN Private defines */
 

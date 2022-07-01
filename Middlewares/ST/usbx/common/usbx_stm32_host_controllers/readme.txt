@@ -8,12 +8,22 @@
   ******************************************************************************
   */
 
+### V1.0.3 / 24-December-2021 ###
+=================================
+Main changes
+-------------
+- Free HCD memory resource during HCD DeInit
+
+Dependencies:
+-------------
+- Azure RTOS USBX V6.1.7 or higher
+
 ### V1.0.2 / 22-November-2021 ###
 =================================
 Main changes
 -------------
 - Avoid halting channels during URB notification
-- Avoid compilation issue with USB_DRD IP (DMA not support)
+- Avoid compilation issue with USB_DRD IP (DMA not supported)
 - Fix endpoint type for isochronous transfer
 
 Dependencies:

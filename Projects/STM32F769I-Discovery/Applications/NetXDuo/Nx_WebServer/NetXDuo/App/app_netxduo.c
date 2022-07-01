@@ -23,6 +23,7 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
+#include   "nx_stm32_eth_config.h"
 
 /* USER CODE END Includes */
 
@@ -49,6 +50,7 @@
 TX_THREAD AppMainThread;
 TX_THREAD AppServerThread;
 TX_THREAD LedThread;
+TX_THREAD AppLinkThread;
 
 void LedThread_Entry(ULONG thread_input);
 
@@ -74,7 +76,7 @@ NX_WEB_HTTP_SERVER HTTPServer;
 
 /* Set nx_server_pool start address to 0x20060100 */
 #if defined ( __ICCARM__ ) /* IAR Compiler */
-#pragma location = 0x20060000
+#pragma location = 0x20060200
 #elif defined ( __CC_ARM ) /* MDK ARM Compiler */
 __attribute__((section(".NxServerPoolSection")))
 #elif defined ( __GNUC__ ) /* GNU Compiler */
@@ -99,6 +101,7 @@ ALIGN_32BYTES (uint32_t DataBuffer[512]);
 /* HTTP server thread entry */
 static void  App_Main_Thread_Entry(ULONG thread_input);
 static void  nx_server_thread_entry(ULONG thread_input);
+static VOID App_Link_Thread_Entry(ULONG thread_input);
 
 /* DHCP state change notify callback */
 static VOID ip_address_change_notify_callback(NX_IP *ip_instance, VOID *ptr);
@@ -299,6 +302,21 @@ UINT MX_NetXDuo_Init(VOID *memory_ptr)
   /* create the LED control thread */
   ret = tx_thread_create(&LedThread, "LED control Thread", LedThread_Entry, 0, pointer, DEFAULT_MEMORY_SIZE,
                          TOGGLE_LED_PRIORITY, TOGGLE_LED_PRIORITY, TX_NO_TIME_SLICE, TX_DONT_START);
+
+  if (ret != TX_SUCCESS)
+  {
+    return NX_NOT_ENABLED;
+  }
+
+  /* Allocate the memory for Link thread   */
+  if (tx_byte_allocate(byte_pool, (VOID **) &pointer,2 *  DEFAULT_MEMORY_SIZE, TX_NO_WAIT) != TX_SUCCESS)
+  {
+    return TX_POOL_ERROR;
+  }
+
+  /* create the Link thread */
+  ret = tx_thread_create(&AppLinkThread, "App Link Thread", App_Link_Thread_Entry, 0, pointer, 2 * DEFAULT_MEMORY_SIZE,
+                         LINK_PRIORITY, LINK_PRIORITY, TX_NO_TIME_SLICE, TX_AUTO_START);
 
   if (ret != TX_SUCCESS)
   {
@@ -519,7 +537,7 @@ void nx_server_thread_entry(ULONG thread_input)
     /* Print Media Opening Success. */
     printf("Fx media successfully opened.\n");
 
-    fx_media_space_available(&SDMedia, &free_bytes); 
+    fx_media_space_available(&SDMedia, &free_bytes);
   }
 
   status = nx_web_http_server_mime_maps_additional_set(&HTTPServer,&my_mime_maps[0], 4);
@@ -553,6 +571,63 @@ void LedThread_Entry(ULONG thread_input)
     HAL_GPIO_TogglePin(GPIOJ, GPIO_PIN_5);
     /* Delay for 500ms (App_Delay is used to avoid context change). */
     tx_thread_sleep(50);
+  }
+}
+
+/**
+* @brief  Link thread entry
+* @param thread_input: ULONG thread parameter
+* @retval none
+*/
+static VOID App_Link_Thread_Entry(ULONG thread_input)
+{
+  ULONG actual_status;
+  UINT linkdown = 0, status;
+
+  while(1)
+  {
+    /* Get Physical Link stackavailtus. */
+    status = nx_ip_interface_status_check(&IpInstance, 0, NX_IP_LINK_ENABLED,
+                                      &actual_status, 10);
+
+    if(status == NX_SUCCESS)
+    {
+      if(linkdown == 1)
+      {
+        linkdown = 0;
+        status = nx_ip_interface_status_check(&IpInstance, 0, NX_IP_ADDRESS_RESOLVED,
+                                      &actual_status, 10);
+        if(status == NX_SUCCESS)
+        {
+          /* The network cable is connected again. */
+          printf("The network cable is connected again.\n");
+          /* Print Webserver Client is available again. */
+          printf("Webserver Client is available again.\n");
+        }
+        else
+        {
+          /* The network cable is connected. */
+          printf("The network cable is connected.\n");
+          /* Send command to Enable Nx driver. */
+          nx_ip_driver_direct_command(&IpInstance, NX_LINK_ENABLE,
+                                      &actual_status);
+          /* Restart DHCP Client. */
+          nx_dhcp_stop(&DHCPClient);
+          nx_dhcp_start(&DHCPClient);
+        }
+      }
+    }
+    else
+    {
+      if(0 == linkdown)
+      {
+        linkdown = 1;
+        /* The network cable is not connected. */
+        printf("The network cable is not connected.\n");
+      }
+    }
+
+    tx_thread_sleep(NX_ETH_CABLE_CONNECTION_CHECK_PERIOD);
   }
 }
 

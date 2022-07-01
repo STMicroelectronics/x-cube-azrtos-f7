@@ -12,10 +12,10 @@ LR_IROM1 0x08000000 0x00200000  {    ; load region size_region
   RW_IRAM1 0x20000000 0x00080000  {  ; RW data
    .ANY (+RW +ZI)
   }
-  RW_NXServerPoolSection 0x20060000 0x2000  {
+  RW_NXServerPoolSection 0x20060200 0x2000  {
   *(.NxServerPoolSection)
   }
-  RW_NXDriverSection 0x20062000 0x1A000  {
+  RW_NXDriverSection 0x20062200 0x1A000  {
   *(.NetXPoolSection)
   }
 }

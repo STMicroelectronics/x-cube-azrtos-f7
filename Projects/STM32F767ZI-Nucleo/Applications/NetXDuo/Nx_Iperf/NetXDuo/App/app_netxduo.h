@@ -77,6 +77,7 @@ UINT MX_NetXDuo_Init(VOID *memory_ptr);
 
 /* Private defines -----------------------------------------------------------*/
 /* USER CODE BEGIN PD */
+#define LINK_PRIORITY            11
 
 
 /* Define demo stack size.   */

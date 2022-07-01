@@ -26,8 +26,8 @@ Azure RTOS is a professional grade, highly reliable and market proven Middleware
 
 One of the following toolchains:
 
-- IAR Embedded Workbench for ARM (EWARM) toolchain 8.50.6 + ST-LINKV2.
-- [STM32CubeIDE V1.7.0](https://www.st.com/en/development-tools/stm32cubeide.html)  + ST-LINKV2
+- IAR Embedded Workbench for ARM (EWARM) toolchain 8.50.9 + ST-LINKV2.
+- [STM32CubeIDE V1.9.0](https://www.st.com/en/development-tools/stm32cubeide.html)  + ST-LINKV2
 - RealView Microcontroller Development Kit (MDK-ARM) toolchain V5.32 + ST-LINKV2
 
 ## Supported Devices and Boards by applications
